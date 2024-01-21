@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/talk
+    username: postgres
+    password: aegisep1234@
+    driver-class-name: org.postgresql.Driver
+  batch:
+    job:
+      enabled: false #??? job
+    jdbc:
+      initialize-schema: always # ??? ????
+server:
+  port: 8888
+
