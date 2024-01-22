@@ -16,65 +16,65 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.RequiredArgsConstructor;
 
-@Configuration
-@RequiredArgsConstructor
+// @Configuration
+// @RequiredArgsConstructor
 public class JobParameterConfiguration {
-
-	private final JobBuilderFactory jobBuilderFactory;
-	private final StepBuilderFactory stepBuilderFactory;
-
-	@Bean
-	public Job job(){
-		return jobBuilderFactory.get("job")
-			.start(step1())
-			.next(step2())
-			.build();
-	}
-
-
-	public Step step1(){
-		return stepBuilderFactory.get("step1")
-			.tasklet(new Tasklet() {
-				@Override
-				public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
-					Exception {
-
-					JobParameters jobParameters = stepContribution.getStepExecution()
-						.getJobExecution()
-						.getJobParameters();
-
-					// 파라미터 꺼내는 법
-					String name = jobParameters.getString("name");
-
-					// 파라미터 꺼내는 법 2
-					Map<String, Object> jobParameters1 = chunkContext.getStepContext().getJobParameters();
-
-					// jar 파일 만들때 생성
-					// jar -jar ...jar name=user1 seq(long)=2L date(date)=2021/01/01 age(double)=16.7
-					//
-					System.out.println("=========");
-					System.out.println("step1: ");
-					System.out.println("=========");
-					return RepeatStatus.FINISHED;
-				}
-			})
-			.build();
-	}
-
-	public Step step2(){
-		return stepBuilderFactory.get("step2")
-			.tasklet(new Tasklet() {
-				@Override
-				public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
-					Exception {
-					System.out.println("=========");
-					System.out.println("step2: ");
-					System.out.println("=========");
-					return RepeatStatus.FINISHED;
-				}
-			})
-			.build();
-	}
+	//
+	// private final JobBuilderFactory jobBuilderFactory;
+	// private final StepBuilderFactory stepBuilderFactory;
+	//
+	// @Bean
+	// public Job job(){
+	// 	return jobBuilderFactory.get("job")
+	// 		.start(step1())
+	// 		.next(step2())
+	// 		.build();
+	// }
+	//
+	//
+	// public Step step1(){
+	// 	return stepBuilderFactory.get("step1")
+	// 		.tasklet(new Tasklet() {
+	// 			@Override
+	// 			public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
+	// 				Exception {
+	//
+	// 				JobParameters jobParameters = stepContribution.getStepExecution()
+	// 					.getJobExecution()
+	// 					.getJobParameters();
+	//
+	// 				// 파라미터 꺼내는 법
+	// 				String name = jobParameters.getString("name");
+	//
+	// 				// 파라미터 꺼내는 법 2
+	// 				Map<String, Object> jobParameters1 = chunkContext.getStepContext().getJobParameters();
+	//
+	// 				// jar 파일 만들때 생성
+	// 				// jar -jar ...jar name=user1 seq(long)=2L date(date)=2021/01/01 age(double)=16.7
+	// 				//
+	// 				System.out.println("=========");
+	// 				System.out.println("step1: ");
+	// 				System.out.println("=========");
+	// 				return RepeatStatus.FINISHED;
+	// 			}
+	// 		})
+	// 		.build();
+	// }
+	//
+	// public Step step2(){
+	// 	return stepBuilderFactory.get("step2")
+	// 		.tasklet(new Tasklet() {
+	// 			@Override
+	// 			public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws
+	// 				Exception {
+	// 				System.out.println("=========");
+	// 				System.out.println("step2: ");
+	// 				System.out.println("=========");
+	// 				return RepeatStatus.FINISHED;
+	// 			}
+	// 		})
+	// 		.build();
+	// }
 
 
 
